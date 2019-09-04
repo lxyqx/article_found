@@ -29,8 +29,8 @@ Page({
 
               app.globalData.userInfo = res.result.data.userData
               app.globalData.userId = res.result.data._id
-              wx.navigateTo({
-                url: '/pages/home/home'
+              wx.switchTab({
+                url: 'pages/home/home'
               })
               //console.log(res)
             } else {
@@ -83,7 +83,7 @@ Page({
           //_this.data.registered = true
           //app.getLoginState()
           console.log(res)
-          wx.navigateTo({
+          wx.switchTab({
             url: '/pages/mine/mine'
           })
         } else {
@@ -130,7 +130,7 @@ Page({
                 console.log(res)
                 app.globalData.userInfo = res.result.data.userData
                 app.globalData.userId = res.result.data._id
-                wx.navigateTo({
+                wx.switchTab({
                   url: '/pages/home/home'
                 })
               } else {
