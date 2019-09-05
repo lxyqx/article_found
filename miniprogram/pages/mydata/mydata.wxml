@@ -2,7 +2,7 @@
 <view>
   <form bindsubmit= 'onSubmit' bindreset='onReset'>
     <view>
-      <image name='headpic' src="{{headpic}}">头像</image>
+      <image name='headpic' src="{{cheadpic}}">头像</image>
       <button bindtap = "upload">更改头像</button>
     </view>
     <view>
@@ -41,5 +41,6 @@
     </view>
     <button form-type ='submit'>提交</button>
     <button form-type ='reset'>重置</button>
+    <button bindtap = 'cancell'>取消</button>
   </form>
 </view>

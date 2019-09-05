@@ -12,9 +12,15 @@ Page({
     sign: "",
     tel: "",
     university:'',
-    collage:''
+    collage:'',
+    cheadpic:''
     },
 
+  cancell: function(){
+    wx.navigateBack({
+      delta : 1
+    })
+  },
 
   onSubmit: function(e){
     //console.log("资料卡已提交")
@@ -22,17 +28,18 @@ Page({
     this.setData({
       birth: e.detail.value.birth,
       gender: e.detail.value.gender,
-      //headpic: e.detail.value.headpic,
       nickname: e.detail.value.nickname,
       sign: e.detail.value.sign,
       tel: e.detail.value.tel,
       university: e.detail.value.university,
-      collage: e.detail.value.collage
+      collage: e.detail.value.collage,
+      headpic:this.data.cheadpic
     })
+    console.log(this.data.headpic)
     wx.cloud.callFunction({
       name:'get_newUserInfo',
       data:{
-        userdata: e.detail.value,
+        userdata: this.data,
         newdata:true
       }
     }).then(res => {
@@ -43,13 +50,15 @@ Page({
   },
 
   onReset: function(e){
+    this.setData({
+      cheadpic:this.data.headpic
+    })
     console.log('资料卡已被重置')
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.query)
     const eventChannel = this.getOpenerEventChannel()
    
     // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
@@ -71,12 +80,38 @@ Page({
       sign: mydata.data.sign,
       tel: mydata.data.tel,
       university:mydata.data.university,
-      collage:mydata.data.collage
+      collage:mydata.data.collage,
+      cheadpic:mydata.data.headpic
     })
     //console.log(mydata.data)
     //console.log(this.data)
   },
    
+  upload: function () {
+    let _this = this
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        const tempFilePaths = res.tempFilePaths
+        wx.cloud.uploadFile({
+          cloudPath: new Date().getTime() + '.png',//上传至云端的路径
+          filePath: tempFilePaths[0],//小程序临时文件路径
+          success: res => {
+            //返回文件 ID
+           console.log(res.fileID)
+           _this.setData({
+             cheadpic: res.fileID
+           })
+          },
+          fail: console.error
+        })
+        console.log(_this.data.headpic)
+      },
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

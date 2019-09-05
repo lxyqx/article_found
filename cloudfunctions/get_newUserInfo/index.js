@@ -48,7 +48,9 @@ exports.main = async (event, context) => {
             sign: event.userdata.sign,
             tel: event.userdata.tel
           }
-        },
+        }.then(res=>{
+          console.log(res)
+        }),
         success: console.log,
         fail: console.error
       })
