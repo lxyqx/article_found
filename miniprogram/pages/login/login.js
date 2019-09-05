@@ -37,6 +37,7 @@ Page({
               //未成功获取到用户信息
               //调用注册方法
               console.log("未注册")
+              //console.log(e.detail)
               _this.register({
                 nickName: e.detail.userInfo.nickName,
                 gender: e.detail.userInfo.gender,
@@ -46,7 +47,7 @@ Page({
                 money:0,
                 lstid:[],
                 fndid:[],
-                headpic:'',
+                headpic: e.detail.userInfo.avatarUrl,
                 sign:'',
                 birth: ''
               })

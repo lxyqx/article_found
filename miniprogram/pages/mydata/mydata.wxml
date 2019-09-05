@@ -1,0 +1,45 @@
+
+<view>
+  <form bindsubmit= 'onSubmit' bindreset='onReset'>
+    <view>
+      <image name='headpic' src="{{headpic}}">头像</image>
+      <button bindtap = "upload">更改头像</button>
+    </view>
+    <view>
+      <text>昵称</text>
+      <input value='{{nickname}}' name='nickname' placeholder='{{nickname}}'/>
+    </view> 
+    <br/>
+    <view>
+      <text>电话</text>
+      <input value='{{tel}}' name='tel' placeholder='{{tel}}'/>
+    </view> 
+    <br/>
+    <view>
+      <text>性别</text>
+      <input value='{{gender}}' name='gender' placeholder='{{gender}}'/>
+    </view>
+    <br/>
+    <view>
+      <text>生日</text>
+      <input value='{{birth}}' name='birth' placeholder = "{{birth}}"/>
+    </view>
+    <br/>
+    <view>
+      <text>大学</text>
+      <input value='{{university}}' name='university' placeholder='{{university}}'/>
+    </view>
+    <br/>
+    <view>
+      <text>学院</text>
+      <input value='{{collage}}' name='collage' placeholder='{{collage}}'/>
+    </view>
+    <br/>
+    <view>
+      <text>个性签名</text>
+      <input value='{{sign}}' name='sign' placeholder='{{sign}}'/>
+    </view>
+    <button form-type ='submit'>提交</button>
+    <button form-type ='reset'>重置</button>
+  </form>
+</view>
